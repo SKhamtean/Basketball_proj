@@ -43,7 +43,7 @@ st.dataframe(df_selected_team)
 
 # Load data of NBA players' average stats
 # Read the average_stat.csv file
-average_stats_path = 'notebooks/average_stat.csv'
+average_stats_path = 'notebooks/average_stats.csv'
 average_stats = pd.read_csv(average_stats_path)
 
 # Button to show average stats

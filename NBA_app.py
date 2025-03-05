@@ -3,7 +3,7 @@ import streamlit as st
 import plotly.express as px
 import lxml
 
-st.title('NBA PLayer Stats For this Decade So Far (2020-2024)')
+st.title('NBA Player Stats For this Decade So Far (2020-2024)')
 
 st.sidebar.header('User Input Features')
 selected_year = st.sidebar.selectbox('Year', list(reversed(range(2021,2025))))
@@ -23,13 +23,13 @@ def load_data(year):
 playerstats = load_data(selected_year)
 
 
-if st.checkbox('Choose NBA team(s)'):
-    sorted_unique_team = sorted(playerstats.Team.unique())
-    selected_team = st.sidebar.multiselect('Team', sorted_unique_team)
+# Team selection
+sorted_unique_team = sorted(playerstats.Team.unique())
+selected_team = st.sidebar.multiselect('Team', sorted_unique_team, sorted_unique_team)
 
-if st.checkbox('Choose NBA position(s)'):
-    unique_pos = ['PG', 'SG', 'SF', 'PF', 'C']
-    selected_pos = st.sidebar.multiselect('Position', unique_pos)
+# Unique positions
+unique_pos = ['PG', 'SG', 'SF', 'PF', 'C']
+selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
 
 # Filter data
 df_selected_team = playerstats[(playerstats.Team.isin(selected_team)) & (playerstats.Pos.isin(selected_pos))]

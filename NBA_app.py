@@ -133,3 +133,6 @@ if st.checkbox('Scatterplot of Assists'):
                       color='Pos', size='AST', hover_name='Player')
     st.plotly_chart(fig6)
     st.write('This shows the assist vs. turnovers, meaning how efficient of a playmaker is. The less of turnovers is the better, but with the increase amount of assists tends to be more turnovers. Typically, the ratio to aim for in assists to turnover is 2:1. Anything less, would usually mean the player is not an elite playmaker, or the designated playmaker for their team. The player with best assist to turnover ratio is Chris Paul with about a 4:1 ratio.')
+
+# Source
+st.write('Data Source: [Basketball Reference](https://www.basketball-reference.com/)')

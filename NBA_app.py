@@ -36,8 +36,8 @@ selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
 # Filter data
 df_selected_team = playerstats[(playerstats.Team.isin(selected_team)) & (playerstats.Pos.isin(selected_pos))]
 
-st.header('Display Player Stats of Selected Team(s)')
-st.write('Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
+st.header('Display Player Stats')
+st.write('Click on Column Headers to Sort Data')
 st.dataframe(df_selected_team)
 
 
@@ -59,7 +59,6 @@ if st.checkbox('Histogram of Points Per Game'):
                         labels={'PTS': 'Points Per Game'},
                         opacity=0.8, color_discrete_sequence=['blue'])
     st.plotly_chart(fig1)
-
 
 # Top 15 players with the highest average points per game
 top15_scorers = average_stats[average_stats.PTS == average_stats.PTS].sort_values(by='PTS', ascending=True).tail(15)  
@@ -100,6 +99,7 @@ if st.checkbox('Scatterplot of Rebounds'):
 top30_3pt = average_stats[average_stats['3PA'] > 5].sort_values(by='3P%', ascending=False).head(30)
 
 if st.checkbox('Scatterplot of 3P%'):
+    st.header('Top 30 Most Efficient 3-Point Shooters')
     fig5 = px.scatter(top30_3pt, x='3PA', y='3P%', 
                       title='3PT Attempts vs. 3PT Percentage (Shooting More Than 5 3PTs Per Game)',
                       labels={'3PA': '3-Point Attempts Per Game', '3P%': '3-Point Percentage'},

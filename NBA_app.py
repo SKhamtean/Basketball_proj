@@ -22,6 +22,8 @@ def load_data(year):
 
 playerstats = load_data(selected_year)
 
+# Convert all values in the 'Team' column to strings
+playerstats['Team'] = playerstats['Team'].astype(str)
 
 # Team selection
 sorted_unique_team = sorted(playerstats.Team.unique())

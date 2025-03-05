@@ -11,13 +11,13 @@ selected_year = st.sidebar.selectbox('Year', list(reversed(range(2021,2025))))
 # Function to load individual season data
 @st.cache_data
 def load_data(year):
-    url = f"https://www.basketball-reference.com/leagues/NBA_{year}_per_game.html"
+    url = f"https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_per_game.html"
     html = pd.read_html(url, header=0)
     df = html[0]
     df = df.drop(df[df.Age == 'Age'].index)  # Remove duplicate headers
     df = df.fillna(0)  # Replace NaN values with 0
     df['Year'] = year  # Add a Year column
-    playerstats = df.drop(['Rk', 'GS', 'MP', 'Rk', 'Awards', 'PF', '2P', '2PA', 'FT', 'FTA', 'eFG%'], axis=1) # Drop unnecessary columns
+    playerstats = df.drop(['Rk', 'GS', 'MP', 'Awards', 'PF', '2P', '2PA', 'FT', 'FTA', 'eFG%'], axis=1) # Drop unnecessary columns
     return playerstats
 
 playerstats = load_data(selected_year)

@@ -6,6 +6,7 @@ import lxml
 st.title('NBA Player Stats For this Decade So Far (2020-2024)')
 
 st.sidebar.header('User Input Features')
+st.sidebar.write('Select the Year, Team, and Position of the Players you want to see stats for.')
 selected_year = st.sidebar.selectbox('Year', list(reversed(range(2021,2025))))
 
 # Function to load individual season data
@@ -47,9 +48,12 @@ average_stats_path = 'notebooks/average_stats.csv'
 average_stats = pd.read_csv(average_stats_path)
 
 # Button to show average stats
-show_avg_stats = st.button('Show average stats of NBA players')
+st.write('Click the button below to show the averages of the NBA players.')
+show_avg_stats = st.button('Show the averages of the NBA players')
 if show_avg_stats:
     st.dataframe(average_stats)
+
+st.header('Data Visualization')
 
 if st.checkbox('Histogram of Points Per Game'):
     # Histogram of Points Per Game (PTS)
